@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: gitops-demo
-        image: runtesting/gitops-demo:latest
+        image: runtesting/gitops-demo:3
         ports:
         - containerPort: 5000
 ---
