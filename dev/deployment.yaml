@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: gitops-demo
-        image: your-docker-account/gitops-demo:latest
+        image: runtesting/gitops-demo:latest
         ports:
         - containerPort: 5000
 ---

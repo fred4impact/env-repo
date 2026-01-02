@@ -27,6 +27,25 @@ https://localhost:8080
 user: admin
 pass: <password>
 
+## Step 5: Login to ArgoCD CLI
+Before creating applications via CLI, you need to authenticate:
+
+```bash
+# Get the ArgoCD server address (if not using port-forward)
+ARGOCD_SERVER=$(kubectl get svc argocd-server -n argocd -o jsonpath='{.status.loadBalancer.ingress[0].hostname}' 2>/dev/null || echo "localhost:8080")
+
+# Login to ArgoCD CLI
+argocd login localhost:8080 --username admin --password admin123 --insecure
+
+# Or if using port-forward on a different port:
+# argocd login localhost:8080 --username admin --password <password> --insecure
+```
+
+**Note:** If you're using port-forward, make sure it's running in another terminal:
+```bash
+kubectl port-forward svc/argocd-server -n argocd 8080:443
+```
+
 ## Connect Environment Repo to ArgoCD
 ```
 argocd app create gitops-app \
