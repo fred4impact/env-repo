@@ -1,0 +1,25 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: gitops-helm-demo
+  namespace: argocd
+spec:
+  project: default
+
+  source:
+    repoURL: https://github.com/YOUR/app-helm-repo.git
+    targetRevision: main
+    path: gitops-helm-app
+
+    helm:
+      valueFiles:
+        - ../../env-repo/dev/values.yaml   # dev file
+
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: default
+
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true

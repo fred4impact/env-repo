@@ -1,0 +1,6 @@
+replicaCount: 3
+image:
+  repository: your-docker-user/gitops-demo
+  tag: "prod"
+service:
+  type: LoadBalancer
